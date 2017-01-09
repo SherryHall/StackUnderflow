@@ -24,6 +24,6 @@ namespace StackUnderflow.Models
 		[ForeignKey("PosterId")]
 		public virtual ApplicationUser Poster { get; set; }
 
-		public ICollection<AnswerVote> Votes { get; set; }
+		public virtual ICollection<AnswerVote> Votes { get; set; }
 	}
 }
