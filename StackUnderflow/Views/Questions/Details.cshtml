@@ -1,0 +1,63 @@
+﻿@model StackUnderflow.Models.Question
+
+@{
+	ViewBag.Title = "Details";
+}
+
+@{var voteSum = Model.Upvotes + Model.Downvotes;}
+<div>
+	<h2>@Html.DisplayFor(model => model.Title)</h2>
+	<hr />
+	<div class="row">
+		<div class="col-md-1">
+			<div class="glyphicon-arrow-up" title="Shows research effort and is clear"></div>
+			<div> @voteSum </div>
+			<div class="glyphicon-arrow-down" title="Unclear and not useful"></div>
+		</div>
+		<div class="col-md-10">
+			<p>
+				@Html.DisplayFor(model => model.Body)
+			</p>
+			<p>
+				Asked by: @Html.DisplayFor(model => model.Poster.DisplayName) On @Html.DisplayFor(model => model.QuestionDate)
+			</p>
+			<p>
+				@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+				@Html.ActionLink("Back to List", "Index")
+			</p>
+		</div>
+	</div>
+</div>
+
+
+@if (Model.Answers == null)
+{
+	<h3> No Answers Yet</h3>
+}
+else
+{
+
+	<h6>@Model.Answers.Count Answers</h6>
+	foreach (var answer in Model.Answers)
+	{
+		var answerVoteSum = answer.Upvotes + answer.Downvotes;
+		<div>
+			<div class="row">
+				<div class="col-md-1">
+					<div class="glyphicon-arrow-up btn" title="This answer is useful"></div>
+					<div> @answerVoteSum; </div>
+					<div class="glyphicon-arrow-down btn" title="This answer is not useful"></div>
+				</div>
+				<div class="col-md-10">
+					<p>
+						@Html.DisplayFor(model => answer.Body)
+					</p>
+					<p>
+						Asked by: @Html.DisplayFor(model => answer.Poster.DisplayName) On @Html.DisplayNameFor(model => answer.AnswerDate)
+					</p>
+				</div>
+			</div>
+		</div>
+	}
+}
+	@Html.ActionLink("Post an Answer", "Create", "Answer",null, new { @class = "btn btn-primary"})

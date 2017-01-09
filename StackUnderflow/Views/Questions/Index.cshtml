@@ -1,0 +1,80 @@
+﻿@model IEnumerable<StackUnderflow.Models.Question>
+
+@{
+	ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="Container">
+	<div class="row">
+
+		@if (User.Identity.IsAuthenticated)
+		{
+			<div class="col-md-2">
+				@Html.ActionLink("My Questions", "MyList", null, new { @class = "btn btn-primary" })
+			</div>
+			<div class="col-md-2">
+				@Html.ActionLink("Ask Question", "Create", null, new { @class = "btn btn-warning" })
+			</div>
+		}
+		<div class="col-md-6">
+			<form id="search" action="/search" method="get" autocomplete="off">
+				<input name="searchText" type="text" placeholder="Search Titles" value="" tabindex="1" autocomplete="off" maxlength="240">
+			</form>
+		</div>
+	</div>
+</div>
+<table class="table">
+	<tr>
+		<th>
+			@Html.DisplayNameFor(model => model.Upvotes)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Downvotes)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.ViewCount)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Title)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.QuestionDate)
+		</th>
+		<th>
+			@Html.DisplayNameFor(model => model.Poster.DisplayName)
+		</th>
+		<th></th>
+	</tr>
+
+	@foreach (var item in Model)
+	{
+		<tr>
+			<td>
+				@Html.DisplayFor(modelItem => item.Upvotes)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Downvotes)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.ViewCount)
+			</td>
+
+			<td>
+				@Html.DisplayFor(modelItem => item.Title)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.QuestionDate)
+			</td>
+			<td>
+				@Html.DisplayFor(modelItem => item.Poster.DisplayName)
+			</td>
+			<td>
+				@Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+				@Html.ActionLink("Details", "Details", new { id = item.Id }) |
+				@Html.ActionLink("Delete", "Delete", new { id = item.Id })
+			</td>
+		</tr>
+	}
+
+</table>
