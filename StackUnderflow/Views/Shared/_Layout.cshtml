@@ -24,13 +24,6 @@
                     <li>@Html.ActionLink("Home", "Index", "Questions")</li>
                     <li>@Html.ActionLink("About", "About", "Questions")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Questions")</li>
-					<li>
-						<div class="search-container">
-							<form id="search" action="/search" method="get" autocomplete="off">
-								<input name="searchText" type="text" placeholder="Search Q&amp;A" value="" tabindex="1" autocomplete="off" maxlength="240">
-							</form>
-						</div>
-					</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
