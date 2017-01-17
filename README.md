@@ -6,8 +6,8 @@ For each question and answer, registered users can vote whether the question/ans
 and useful, or not.
 ​
 ### How I did it ###
-[ short list/decscription of what I used to build it and how I approached the problem]
-​
+To begin the project, I sketched what I would like to appear on each screen.
+Next, I determined the data structures needed
 - - - -
 ### Result ###
 [a screen shot of the app]

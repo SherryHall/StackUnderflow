@@ -16,17 +16,24 @@ namespace StackUnderflow.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: Questions
+        // GET: First Ten Questions
         public async Task<ActionResult> Index()
         {
 			var questions = db.Questions.OrderByDescending(Question => Question.QuestionDate).Take(10);
 			return View(await questions.ToListAsync());
         }
 
-		// GET: Questions
+		// GET: Posters Questions
 		public async Task<ActionResult> MyList()
 		{
 			var questions = db.Questions.Include(q => q.Poster);
+			return View(await questions.ToListAsync());
+		}
+
+		// GET: Search Results Questions
+		public async Task<ActionResult> SearchList(string searchText)
+		{
+			var questions = db.Questions.Where(w => (w.Title).ToLower().Contains(searchText.ToLower()));
 			return View(await questions.ToListAsync());
 		}
 
